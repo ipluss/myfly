@@ -9,18 +9,18 @@ DIR_TMP="$(mktemp -d)"
 cat << EOF > ${DIR_TMP}/heroku.json
 {
     "inbounds": [{
-        "port": 2022,
-        "protocol": "vless",
+        "port": ${PORT},
+        "protocol": "vmess",
         "settings": {
             "clients": [{
-                "id": "258e0594-7367-47bd-9a78-aeff2b763cb2"
-            }],
-            "decryption": "none"
+                "id": "${ID}",
+                "alterId": 0
+            }]
         },
         "streamSettings": {
             "network": "ws",
             "wsSettings": {
-                "path": "/"
+                "path": "${WSPATH}"
             }
         }
     }],
@@ -36,11 +36,11 @@ busybox unzip ${DIR_TMP}/v2ray_dist.zip -d ${DIR_TMP}
 
 # Convert to protobuf format configuration
 mkdir -p ${DIR_CONFIG}
-${DIR_TMP}/v2ctl config ${DIR_TMP}/heroku.json > ${DIR_CONFIG}/config.pb
+cp config ${DIR_TMP}/heroku.json  ${DIR_CONFIG}/config.json
 
 # Install V2Ray
 install -m 755 ${DIR_TMP}/v2ray ${DIR_RUNTIME}
 rm -rf ${DIR_TMP}
 
 # Run V2Ray
-${DIR_RUNTIME}/v2ray -config=${DIR_CONFIG}/config.pb
+${DIR_RUNTIME}/v2ray -config=${DIR_CONFIG}/config.json
