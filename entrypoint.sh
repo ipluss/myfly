@@ -13,14 +13,14 @@ cat << EOF > ${DIR_TMP}/heroku.json
         "protocol": "vless",
         "settings": {
             "clients": [{
-                "id": "${ID}"
+                "id": "258e0594-7367-47bd-9a78-aeff2b763cb2"
             }],
             "decryption": "none"
         },
         "streamSettings": {
             "network": "ws",
             "wsSettings": {
-                "path": "${WSPATH}"
+                "path": "/"
             }
         }
     }],
