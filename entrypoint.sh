@@ -1,3 +1,9 @@
+https://github.com/ipluss/myfly/tree/ifly
+
+
+b912bff5-b8f7-47ef-b8d8-22942097719c
+
+
 #!/bin/sh
 
 # Global variables
@@ -10,12 +16,12 @@ cat << EOF > ${DIR_TMP}/heroku.json
 {
     "inbounds": [{
         "port": ${PORT},
-        "protocol": "vmess",
+        "protocol": "vless",
         "settings": {
             "clients": [{
-                "id": "b912bff5-b8f7-47ef-b8d8-22942097719c",
-                "alterId": 0
-            }]
+                "id": "b912bff5-b8f7-47ef-b8d8-22942097719c"
+            }],
+            "decryption": "none"
         },
         "streamSettings": {
             "network": "ws",
