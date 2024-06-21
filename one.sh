@@ -9,18 +9,18 @@ DIR_TMP="$(mktemp -d)"
 cat << EOF > ${DIR_TMP}/heroku.json
 {
     "inbounds": [{
-        "port": ${PORT},
+        "port": 2022,
         "protocol": "vless",
         "settings": {
             "clients": [{
-                "id": "${ID}"
+                "id": "b912bff5-b8f7-47ef-b8d8-22942097719c"
             }],
             "decryption": "none"
         },
         "streamSettings": {
             "network": "ws",
             "wsSettings": {
-                "path": "${WSPATH}"
+                "path": "/"
             }
         }
     }],
@@ -43,4 +43,5 @@ install -m 755 ${DIR_TMP}/v2ray ${DIR_RUNTIME}
 rm -rf ${DIR_TMP}
 
 # Run V2Ray
-${DIR_RUNTIME}/v2ray -config=${DIR_CONFIG}/config.pb
+#${DIR_RUNTIME}/v2ray -config=${DIR_CONFIG}/config.pb
+
